@@ -1262,6 +1262,68 @@ body {
   overflow: hidden;
   container-type: inline-size;
 }
+.acpChatLayout input,
+.acpChatLayout textarea,
+.acpThreadViewport,
+.acpThreadViewport :where(*) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+.acpChatLayout :where(
+  button,
+  [role="button"],
+  [role="combobox"],
+  [role="option"],
+  .acpSelectItem,
+  .acpSelectScrollButton,
+  .acpSelectLabel,
+  .acpAgentSelect,
+  .acpModelSelectorTrigger,
+  .acpConfigOptionSelect,
+  .acpModelSelectorItem,
+  .acpConfigSwitch,
+  .acpChatListItemTrigger,
+  .acpChatListNew,
+  .acpChatListDrawerTrigger,
+  .acpChatListDelete,
+  .acpChatListLoadMore,
+  .acpAttachmentChip,
+  .acpAttachmentRemove,
+  .acpMermaidBlock--interactive,
+  .acpMermaidBlock--interactive *,
+  .acpMermaidToolbar,
+  .acpMermaidToolbar *,
+  .acpSelectionToolbar,
+  .acpSelectionToolbar *,
+  .acpSlashCommandItem,
+  .acpComposerQuoteDismiss,
+  .acpComposerSend,
+  .acpApprovalButton,
+  .acpAuthAddVar
+) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.acpSelectContent,
+.acpSelectContent *,
+.acpModelSelectorContent,
+.acpModelSelectorContent *,
+.acpSelectionToolbar,
+.acpSelectionToolbar *,
+.acpSlashCommandMenu,
+.acpSlashCommandMenu *,
+.acpControlTooltip {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.acpModelSelectorSearch {
+  -webkit-user-select: text;
+  user-select: text;
+}
+.acpThreadViewport :where(.acpMarkdownPathLink) {
+  -webkit-user-select: text;
+  user-select: text;
+}
 .acpChatMain {
   display: flex;
   flex-direction: column;
@@ -1304,6 +1366,11 @@ body {
 .acpAgentSelect:disabled {
   cursor: default;
   opacity: 0.6;
+}
+.acpAgentSelect:focus {
+  border-color: color-mix(in srgb, var(--acp-accent) 58%, var(--acp-border));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--acp-accent) 28%, transparent);
+  outline: none;
 }
 .acpAgentSelectStarting {
   position: relative;
@@ -1423,6 +1490,7 @@ body {
   border-radius: 4px;
   cursor: default;
   outline: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 .acpSelectItem[data-highlighted] {
@@ -1485,6 +1553,9 @@ body {
   border-color: color-mix(in srgb, var(--acp-accent) 48%, var(--acp-border));
   background: color-mix(in srgb, var(--acp-bg-alt) 94%, var(--acp-accent));
 }
+.acpModelPickerControl:focus-within {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--acp-accent) 34%, transparent);
+}
 .acpControlWithHint {
   position: relative;
 }
@@ -1544,6 +1615,12 @@ body {
 .acpConfigOptionSelect:disabled {
   cursor: default;
   opacity: 0.6;
+}
+.acpModelSelectorTrigger:focus,
+.acpConfigOptionSelect:focus,
+.acpModelSelectorTrigger:focus-visible,
+.acpConfigOptionSelect:focus-visible {
+  outline: none;
 }
 .acpModelSelectorTriggerText,
 .acpConfigOptionSelect > span {
@@ -1664,6 +1741,9 @@ body {
 .acpConfigToggle:focus-within {
   border-color: color-mix(in srgb, var(--acp-accent) 42%, var(--acp-border));
   background: color-mix(in srgb, var(--acp-accent) 10%, var(--acp-bg-alt));
+}
+.acpConfigToggle:focus-within {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--acp-accent) 34%, transparent);
 }
 .acpConfigToggleLabel {
   min-width: 0;
@@ -2340,17 +2420,15 @@ body {
   padding: 0;
   overflow: hidden;
   resize: vertical;
+  -webkit-user-select: none;
   user-select: none;
 }
 .acpMermaidViewport {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  cursor: grab;
+  cursor: move;
   touch-action: none;
-}
-.acpMermaidViewport:active {
-  cursor: grabbing;
 }
 .acpMermaidViewport svg {
   display: block;
@@ -2380,7 +2458,6 @@ body {
   border-radius: 4px;
   color: var(--acp-text);
   background: transparent;
-  cursor: pointer;
 }
 .acpMermaidToolbarButton:hover {
   background: var(--ij-bg-hover, #ffffff17);
@@ -2974,6 +3051,7 @@ details.acpTool[open] > .acpToolHeader::after {
   color: var(--acp-accent);
   font-family: var(--acp-mono), monospace;
   font-size: 12px;
+  -webkit-user-select: all;
   user-select: all;
 }
 .acpAuthHint {
